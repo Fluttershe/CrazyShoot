@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c60b9c97dea21a04daee64b8565b37e8
+timeCreated: 1505217030
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - objPrefab: {instanceID: 0}
+  - HuoHua: {instanceID: 0}
+  - firingPoint: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
