@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Action = System.Action;
 
 public class ComplexGun : Gun, IWeaponWithHeat
 {
@@ -35,6 +36,23 @@ public class ComplexGun : Gun, IWeaponWithHeat
 	[SerializeField]
 	bool overheated;
 
+	public bool IsOverheated
+	{ get { return overheated; } }
+
+	private Action onOverheating;
+	public event Action OnOverheating
+	{
+		add { onOverheating += value; }
+		remove { onOverheating -= value; }
+	}
+
+	private Action onHeatDiedDown;
+	public event Action OnOverheatEnded
+	{
+		add { onHeatDiedDown += value; }
+		remove { onHeatDiedDown -= value; }
+	}
+
 	public float HeatPercent
 	{
 		get { return heat.CurrentValue / heat.BaseValue; }
@@ -66,8 +84,12 @@ public class ComplexGun : Gun, IWeaponWithHeat
 			{
 				if (heat.CurrentValue > 0)
 					heat.ModCurrent(-heatDispSpeed * Time.deltaTime);
-				else
+				else if (overheated)
+				{
 					overheated = false;
+					if (onHeatDiedDown != null)
+						onHeatDiedDown.Invoke();
+				}
 			}
 		}
 	}
@@ -121,6 +143,8 @@ public class ComplexGun : Gun, IWeaponWithHeat
 		if (heat.CurrentValue > heat.BaseValue)
 		{
 			overheated = true;
+			if (onOverheating != null)
+				onOverheating.Invoke();
 		}
 	}
 }

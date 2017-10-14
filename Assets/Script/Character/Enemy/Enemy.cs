@@ -12,10 +12,10 @@ public abstract class Enemy : Character {
 	protected float speed = 3;
 
 	/// <summary>
-	/// 冷却槽
+	/// 射击警告
 	/// </summary>
 	[SerializeField]
-	protected Slider cooldownBar;
+	protected FlashColor shootingWarning;
 
 	/// <summary>
 	/// 是否从正面出现

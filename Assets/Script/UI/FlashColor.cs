@@ -3,35 +3,43 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>
-/// Work with slider.
-/// </summary>
+[RequireComponent(typeof(Image))]
 public class FlashColor : MonoBehaviour
 {
 	[SerializeField]
-	Color color1;
+	protected Color color1;
 
 	[SerializeField]
-	Color color2;
+	protected Color color2;
 
 	[SerializeField]
-	float flashRate;
+	protected float flashRate;
 
-	[SerializeField]
-	Image image;
+	protected Image image;
 
-	public void OnValueChangeCallback(float value)
+	private bool flashing;
+
+	private void Start()
 	{
-		if (value >= 1)
-			StartCoroutine(Flash());
-		if (value <= 0)
-		{
-			StopAllCoroutines();
-			image.color = color1;
-		}
+		image = GetComponent<Image>();
 	}
 
-	IEnumerator Flash()
+	public void StartFlash()
+	{
+		if (flashing) return;
+		flashing = true;
+		StartCoroutine(Flash());
+	}
+
+	public void StopFlash()
+	{
+		if (!flashing) return;
+		flashing = false;
+		StopAllCoroutines();
+		image.color = color1;
+	}
+
+	protected IEnumerator Flash()
 	{
 		while (true)
 		{

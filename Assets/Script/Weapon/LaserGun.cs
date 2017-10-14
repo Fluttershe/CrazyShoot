@@ -43,6 +43,9 @@ public class LaserGun : MonoBehaviour, IWeaponWithHeat
 
 	bool firing;
 
+	public event Action OnOverheating;
+	public event Action OnOverheatEnded;
+
 	public float HeatPercent
 	{
 		get
@@ -50,6 +53,9 @@ public class LaserGun : MonoBehaviour, IWeaponWithHeat
 			return heat.CurrentValue / heat.BaseValue;
 		}
 	}
+
+	public bool IsOverheated
+	{ get { return overheated; } }
 
 	public void StartFire()
 	{
@@ -85,8 +91,11 @@ public class LaserGun : MonoBehaviour, IWeaponWithHeat
 			{
 				if (heat.CurrentValue > 0)
 					heat.ModCurrent(-heatDispSpeed * Time.deltaTime);
-				else
+				else if (overheated)
+				{
 					overheated = false;
+					OnOverheatEnded.Invoke();
+				}
 			}
 
 			laserLine.enabled = false;
@@ -129,6 +138,7 @@ public class LaserGun : MonoBehaviour, IWeaponWithHeat
 		if (heat.CurrentValue >= heat.BaseValue)
 		{
 			overheated = true;
+			OnOverheating.Invoke();
 		}
 	}
 }

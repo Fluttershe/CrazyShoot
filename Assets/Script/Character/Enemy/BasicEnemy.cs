@@ -41,9 +41,11 @@ public class BasicEnemy : Enemy {
 				transform.Translate(MovingDirection * distance, Space.World);
 			}
 		}
-		
 
-		cooldownBar.value = gun.CooldownPercentage;
+		if (shootingWarning != null && gun.CooldownPercentage < 0.4f)
+			shootingWarning.StartFlash();
+		else
+			shootingWarning.StopFlash();
 	}
 
 	public override void Initialize()
