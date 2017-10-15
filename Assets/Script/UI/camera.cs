@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class camera : MonoBehaviour {
 
-    public Camera manCamera;
-
     [SerializeField]
     float shakeDec = 0.8f;
 
@@ -15,9 +13,14 @@ public class camera : MonoBehaviour {
     Vector3 originalPos;
 
     void Start() {
-        Screen.SetResolution(1280, 800, true, 60);
-        float screenAspect = 1280f / 800f; //现在android手机的主流分辨。
-        manCamera.aspect = screenAspect; //摄像机的长宽比（宽度除以高度）
+
+		Screen.SetResolution(1280, 800, true, 60);
+		float screenAspect = 1280f / 800f; //现在android手机的主流分辨。
+
+		Camera[] cameras = GetComponentsInChildren<Camera>();
+		foreach (Camera c in cameras)
+			c.aspect = screenAspect; //摄像机的长宽比（宽度除以高度）
+
         originalPos = transform.localPosition;
     }
 
