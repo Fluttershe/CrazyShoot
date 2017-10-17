@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class gameTime : MonoBehaviour {
+public class GameTime : MonoBehaviour {
 
     public float gametime;//游戏时间（计时器）
 
