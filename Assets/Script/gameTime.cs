@@ -11,6 +11,6 @@ public class GameTime : MonoBehaviour {
 	}
 	
 	void Update () {
-        gametime = gametime + 1;
+        gametime += Time.deltaTime;
 	}
 }

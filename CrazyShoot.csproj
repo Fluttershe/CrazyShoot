@@ -95,7 +95,7 @@
     <Compile Include="Assets\Script\Character\Enemy\Enemy.cs" />
     <Compile Include="Assets\Script\Character\Player\Player.cs" />
     <Compile Include="Assets\Script\ExtensionMethods.cs" />
-    <Compile Include="Assets\Script\gameTime.cs" />
+    <Compile Include="Assets\Script\GameTime.cs" />
     <Compile Include="Assets\Script\ObjectSpawns\AutoRelease.cs" />
     <Compile Include="Assets\Script\ObjectSpawns\EnemySpawn.cs" />
     <Compile Include="Assets\Script\ObjectSpawns\Objectpool.cs" />

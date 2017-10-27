@@ -5,14 +5,14 @@ using UnityEngine;
 /// <summary>
 /// 出生点
 /// </summary>
-public class SpawnPoint : MonoBehaviour {
+public class SpawnPoint : GameTime {
 
 	// 出生的对象
 	[SerializeField]
 	protected SpawnableObject objPrefab;
 
 	// 出生的冷却
-	[SerializeField, MinMaxSlider(0, 10)]
+	[SerializeField, MinMaxSlider(0, 4)]
 	protected Vector2 cooldownLimit;
 	protected float cooldown;
 
@@ -45,7 +45,7 @@ public class SpawnPoint : MonoBehaviour {
 			// ..生成一个对象
 			SpawnObject();
 		}
-	}
+    }
 
 	/// <summary>
 	/// 冷却计数，当冷却完成时返回true, 否则返回false

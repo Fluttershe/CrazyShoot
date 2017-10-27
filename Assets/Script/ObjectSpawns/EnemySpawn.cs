@@ -11,9 +11,15 @@ public class EnemySpawn : SpawnPoint
 	protected override void Start() {
 		base.Start();
 		cooldown = Random.Range(0, (int)cooldownLimit.x);
-	}
+    }
 
-	protected override void InitializeObject(SpawnableObject obj)
+    protected override void Update()
+    {
+        base.Update();
+        if (((int)gametime) % 10 == 0) cooldownLimit *= 0.9999f;
+    }
+
+    protected override void InitializeObject(SpawnableObject obj)
 	{
 		if (area != null)
 			(obj as Enemy).TargetPosition = area.GetRandomPoint();
