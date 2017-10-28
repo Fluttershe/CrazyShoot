@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// 出生点
 /// </summary>
-public class SpawnPoint : GameTime {
+public class SpawnPoint : MonoBehaviour {
 
 	// 出生的对象
 	[SerializeField]
