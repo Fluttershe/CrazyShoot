@@ -61,7 +61,7 @@ public abstract class Character : SpawnableObject {
 		if (health.CurrentValue <= 0) {
 			ObjectPool.Acquire(BaoZha).transform.position = transform.position;
 			CameraEffect.Shake();
-			ReleaseSelf();
+            ReleaseSelf();
 		}
 	}
 
