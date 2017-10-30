@@ -14,8 +14,6 @@ public abstract class Character : SpawnableObject {
 	[SerializeField]
 	private Slider healthBar;
 
-    public static bool ZhenDong;
-
     /// <summary>
     /// 玩家对象
     /// </summary>
@@ -62,8 +60,8 @@ public abstract class Character : SpawnableObject {
 
 		if (health.CurrentValue <= 0) {
 			ObjectPool.Acquire(BaoZha).transform.position = transform.position;
-            ZhenDong = true;
-            ReleaseSelf();
+			CameraEffect.Shake();
+			ReleaseSelf();
 		}
 	}
 

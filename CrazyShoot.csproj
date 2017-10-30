@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>5.6.2f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -94,6 +92,7 @@
     <Compile Include="Assets\Script\GameManager.cs" />
     <Compile Include="Assets\Script\GameScore.cs" />
     <Compile Include="Assets\Script\GameTime.cs" />
+    <Compile Include="Assets\Script\LoadScene.cs" />
     <Compile Include="Assets\Script\ObjectSpawns\AutoRelease.cs" />
     <Compile Include="Assets\Script\ObjectSpawns\EnemySpawn.cs" />
     <Compile Include="Assets\Script\ObjectSpawns\Objectpool.cs" />
@@ -101,9 +100,9 @@
     <Compile Include="Assets\Script\ObjectSpawns\SpawnPoint.cs" />
     <Compile Include="Assets\Script\ObjectSpawns\SpawnableObject.cs" />
     <Compile Include="Assets\Script\StateValue.cs" />
-    <Compile Include="Assets\Script\TimeEvent.cs" />
+    <Compile Include="Assets\Script\Timer.cs" />
+    <Compile Include="Assets\Script\UI\CameraEffect.cs" />
     <Compile Include="Assets\Script\UI\FlashColor.cs" />
-    <Compile Include="Assets\Script\UI\camera.cs" />
     <Compile Include="Assets\Script\Weapon\ComplexGun.cs" />
     <Compile Include="Assets\Script\Weapon\EnemyGun.cs" />
     <Compile Include="Assets\Script\Weapon\Gun.cs" />

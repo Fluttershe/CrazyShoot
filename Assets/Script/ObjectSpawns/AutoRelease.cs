@@ -7,10 +7,7 @@ public class AutoRelease : SpawnableObject
 	[SerializeField]
 	protected float releaseTime;
 
-	[SerializeField]
-	bool released;
-
-	float releaseTimer;
+	Timer releaseTim;
 
 	private void OnEnable()
 	{
@@ -20,15 +17,7 @@ public class AutoRelease : SpawnableObject
 	public override void Initialize()
 	{
 		base.Initialize();
-		released = false;
-		releaseTimer = 0;
-	}
-
-	protected virtual void Update()
-	{
-		if (releaseTimer < releaseTime)
-			releaseTimer += Time.deltaTime;
-		else
-			ReleaseSelf();
+		releaseTim = new Timer(releaseTime, ReleaseSelf, true);
+		releaseTim.Start();
 	}
 }

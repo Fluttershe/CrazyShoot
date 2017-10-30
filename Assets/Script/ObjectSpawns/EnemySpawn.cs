@@ -8,12 +8,12 @@ public class EnemySpawn : SpawnPoint
 	[SerializeField]
 	bool IsFront;
 
-	TimeEvent quickenCooldown;
+	Timer quickenCooldown;
 
 	protected override void Start() {
 		base.Start();
 		cooldown = Random.Range(0, (int)cooldownLimit.x);
-		quickenCooldown = new TimeEvent(10, () => { cooldownLimit *= 0.9f; });
+		quickenCooldown = new Timer(10, () => { cooldownLimit *= 0.9f; });
 		quickenCooldown.Start();
 	}
 

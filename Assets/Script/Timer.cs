@@ -6,7 +6,7 @@ using System.Text;
 /// <summary>
 /// 定时事件，在经过指定的时间后激发事件
 /// </summary>
-public class TimeEvent
+public class Timer
 {
 	protected bool once;
 	protected bool active;
@@ -19,7 +19,7 @@ public class TimeEvent
 	/// </summary>
 	/// <param name="riseTime">隔多长时间激发事件</param>
 	/// <param name="action">所激发的事件</param>
-	public TimeEvent(float riseTime, Action action)
+	public Timer(float riseTime, Action action)
 	{
 		this.riseTime = riseTime;
 		this.action = action;
@@ -32,7 +32,7 @@ public class TimeEvent
 	/// <param name="riseTime">隔多长时间激发事件</param>
 	/// <param name="action">所激发的事件</param>
 	/// <param name="once">是否只激发一次事件</param>
-	public TimeEvent(float riseTime, Action action, bool once) : this(riseTime, action)
+	public Timer(float riseTime, Action action, bool once) : this(riseTime, action)
 	{
 		this.once = once;
 	}
@@ -46,11 +46,21 @@ public class TimeEvent
 		if (active) return;
 		active = true;
 
-		// 清除之前的计时
-		passedTime = 0;
-
 		// 开始接收时间更新
 		GameTime.UpdateCall += ReceiveTimeUpdate;
+	}
+
+	/// <summary>
+	/// 暂停定时
+	/// </summary>
+	public void Pause()
+	{
+		// 如果已经停止了，则直接退出
+		if (!active) return;
+		active = false;
+
+		// 停止接收时间更新
+		GameTime.UpdateCall -= ReceiveTimeUpdate;
 	}
 
 	/// <summary>
@@ -61,9 +71,30 @@ public class TimeEvent
 		// 如果已经停止了，则直接退出
 		if (!active) return;
 		active = false;
+		
+		// 清除之前的计时
+		passedTime = 0;
 
 		// 停止接收时间更新
 		GameTime.UpdateCall -= ReceiveTimeUpdate;
+	}
+
+	/// <summary>
+	/// 激发时间
+	/// </summary>
+	public float RiseTime
+	{
+		get { return riseTime; }
+		set { riseTime = value; }
+	}
+
+	/// <summary>
+	/// 激发事件
+	/// </summary>
+	public event Action TimerEvent
+	{
+		add { action += value; }
+		remove { action -= value; }
 	}
 
 	/// <summary>

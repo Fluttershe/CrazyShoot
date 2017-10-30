@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(ParticleSystem))]
 public class ParticleEffect : AutoRelease
 {
-	protected void Start()
+	protected void Awake()
 	{
 		releaseTime = GetComponent<ParticleSystem>().main.duration;
 	}

@@ -16,9 +16,6 @@ public class PlayerWeaponMount : MonoBehaviour
 	private int currentWeapon;
 
 	[SerializeField]
-	float scollDelta;
-
-	[SerializeField]
 	FlashColor flash;
 
 	private void Start()
@@ -56,8 +53,7 @@ public class PlayerWeaponMount : MonoBehaviour
 		{
             weaponList[currentWeapon].StopFire();
 		}
-
-		scollDelta = Input.mouseScrollDelta.y;
+		
 		if (Input.mouseScrollDelta.y > 0.5f)
 		{
 			SwitchWeapon(currentWeapon + 1);
