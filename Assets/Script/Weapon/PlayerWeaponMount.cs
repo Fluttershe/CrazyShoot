@@ -10,13 +10,13 @@ public class PlayerWeaponMount : MonoBehaviour
     [SerializeField]
 	private Slider heatBar;
 
-	private IWeaponWithHeat[] weaponList;
-
 	[SerializeField]
 	private int currentWeapon;
 
 	[SerializeField]
 	FlashColor flash;
+
+	private IWeaponWithHeat[] weaponList;
 
 	private void Start()
 	{

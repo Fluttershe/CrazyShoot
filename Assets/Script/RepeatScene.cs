@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class RepeatScene : MonoBehaviour {
     public void load()
     {
-        SceneManager.LoadScene(Application.loadedLevelName);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1;
     }
 }

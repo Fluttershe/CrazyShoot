@@ -65,6 +65,8 @@ public class BasicEnemy : Enemy {
 
 	public override void ReleaseSelf()
 	{
+		PlayerStatistics.GetStat().LastBasicEnemyKilled ++;
+		PlayerStatistics.GetStat().LastCash +=5;
 		base.ReleaseSelf();
 		gun.StopFire();
 	}

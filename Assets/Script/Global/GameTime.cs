@@ -7,10 +7,8 @@ using UnityEngine;
 /// <summary>
 /// 游戏计时器，记录一场游戏从开始到结束的时间
 /// </summary>
-public class GameTime : MonoBehaviour
+public class GameTime : SingleBehaviour<GameTime>
 {
-	private static GameTime instance;
-
 	private float passedTime = 0;
 	private Action<float> updateCall;
 	
@@ -21,20 +19,14 @@ public class GameTime : MonoBehaviour
 	{
 		add
 		{
-			// 创建计时器实例（如果还未创建的话）
-			CreateInstance();
-
 			// 加入更新事件
-			instance.updateCall += value;
+			Instance.updateCall += value;
 		}
 
 		remove
 		{
-			// 创建计时器实例（如果还未创建的话）
-			CreateInstance();
-
 			// 移除更新事件
-			instance.updateCall -= value;
+			Instance.updateCall -= value;
 		}
 	}
 
@@ -43,17 +35,7 @@ public class GameTime : MonoBehaviour
 	/// </summary>
 	public static float PassedTime
 	{
-		get { return instance.passedTime; }
-	}
-
-	/// <summary>
-	/// 创建计时器实例（如果还未创建的话）
-	/// </summary>
-	private static void CreateInstance()
-	{
-		if (instance != null) return;
-
-		instance = new GameObject("GameTime").AddComponent<GameTime>();
+		get { return Instance.passedTime; }
 	}
 
 	/// <summary>
