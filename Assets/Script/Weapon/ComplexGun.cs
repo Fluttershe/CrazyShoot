@@ -64,8 +64,6 @@ public class ComplexGun : Gun, IWeaponWithHeat
 
 		if (triggerHeld && !overheated)
 		{
-			// 重设散热延迟
-			delayBeforeHeatDisp.ResetCurrentValue();
 			// 射击
 			Firing();
 		}
@@ -74,14 +72,6 @@ public class ComplexGun : Gun, IWeaponWithHeat
 			// 重设开火延迟
 			delayBeforeFire.ResetCurrentValue();
 
-			// 如果散热延迟未过
-			if (delayBeforeHeatDisp.CurrentValue > 0)
-			{
-                SanRe.Play();
-                delayBeforeHeatDisp.ModCurrent(-Time.deltaTime);
-			}
-			else
-			{
 				if (heat.CurrentValue > 0)
 					heat.ModCurrent(-heatDispSpeed * Time.deltaTime);
 				else if (overheated)
@@ -90,7 +80,6 @@ public class ComplexGun : Gun, IWeaponWithHeat
 					if (onHeatDiedDown != null)
 						onHeatDiedDown.Invoke();
 				}
-			}
 		}
 	}
 
@@ -136,16 +125,5 @@ public class ComplexGun : Gun, IWeaponWithHeat
 		base.SpawnOver();
 		magazine.ModCurrent(-1);
 		PlayerStatistics.GetStat().LastMGShootTimes ++;
-		
-		// 增加热量
-		heat.ModCurrent(heatPerShoot);
-
-		// 如果过热
-		if (heat.CurrentValue > heat.BaseValue)
-		{
-			overheated = true;
-			if (onOverheating != null)
-				onOverheating.Invoke();
-		}
 	}
 }

@@ -5,10 +5,12 @@ using UnityEngine;
 public class CameraEffect : MonoBehaviour {
 
     [SerializeField]
-    float shakeDec = 0.8f;
+    float shakeDec = 0.5f;
 
 	[SerializeField]
 	float shakeVol = 2;
+
+    private int baozhakongzhi;
 
     Vector3 originalPos;
 
@@ -38,27 +40,31 @@ public class CameraEffect : MonoBehaviour {
 
         originalPos = transform.localPosition;
 	}
-	
-	public static void Shake()
+
+    public static void Shake()
 	{
 		instance.ShakeCamera();
 	}
 
 	void ShakeCamera()
 	{
-		StartCoroutine(ShakeCamera(shakeVol));
+        baozhakongzhi = Random.Range(1, 3);
+        if (baozhakongzhi == 2)
+        {
+            StartCoroutine(ShakeCamera(shakeVol));
+        }
 	}
 
 	IEnumerator ShakeCamera(float shakeVol)
 	{
 		while (shakeVol > 0)
-		{
-			float randomX = Random.Range(-shakeVol, shakeVol);
-			float randomY = Random.Range(-shakeVol, shakeVol);
-			transform.localPosition = originalPos + new Vector3(randomX, randomY, 0);
-			shakeVol -= shakeDec;
-			yield return null;
-		}
+        {
+                float randomX = Random.Range(-shakeVol, shakeVol);
+                float randomY = Random.Range(-shakeVol, shakeVol);
+                transform.localPosition = originalPos + new Vector3(randomX, randomY, 0);
+                shakeVol -= shakeDec;
+                yield return null;
+        }
 
 		transform.localPosition = originalPos;
 	}

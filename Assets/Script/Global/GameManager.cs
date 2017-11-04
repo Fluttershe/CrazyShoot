@@ -54,7 +54,7 @@ public class GameManager : SingleBehaviour<GameManager>
 	public static void Gameover()
 	{
 		var state = Instance.state;
-		state.LastPlayTime = GameTime.PassedTime;
+		state.LastPlayTime = (int)GameTime.PassedTime;
 
 		if (state.LongestPlayTime < state.LastPlayTime)
 			state.LongestPlayTime = state.LastPlayTime;

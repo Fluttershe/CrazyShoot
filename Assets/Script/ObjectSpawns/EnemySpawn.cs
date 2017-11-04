@@ -13,7 +13,7 @@ public class EnemySpawn : SpawnPoint
 	protected override void Start() {
 		base.Start();
 		cooldown = Random.Range(0, (int)cooldownLimit.x);
-		quickenCooldown = new Timer(10, () => { cooldownLimit *= 0.9f; });
+		quickenCooldown = new Timer(10, () => { cooldownLimit *= 0.8f; });
 		quickenCooldown.Start();
 	}
 
