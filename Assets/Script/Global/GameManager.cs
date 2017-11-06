@@ -47,19 +47,13 @@ public class GameManager : SingleBehaviour<GameManager>
 
 		state.LastBasicEnemyKilled = 0;
 		state.LastCash = 0;
-		state.LastMGShootTimes = 0;
-		state.LastPlayTime = 0;
 	}
 
 	public static void Gameover()
 	{
 		var state = Instance.state;
-		state.LastPlayTime = (int)GameTime.PassedTime;
 
-		if (state.LongestPlayTime < state.LastPlayTime)
-			state.LongestPlayTime = state.LastPlayTime;
 		state.Cash += state.LastCash;
-		state.MGShootTimes += state.LastMGShootTimes;
 		state.BasicEnemyKilled += state.LastBasicEnemyKilled;
 
 		CreateInstance();

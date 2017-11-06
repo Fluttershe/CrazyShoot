@@ -124,6 +124,5 @@ public class ComplexGun : Gun, IWeaponWithHeat
 	{
 		base.SpawnOver();
 		magazine.ModCurrent(-1);
-		PlayerStatistics.GetStat().LastMGShootTimes ++;
 	}
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using System.Runtime.Serialization;
 
 /// <summary>
 /// 玩家数据
@@ -16,16 +17,6 @@ public sealed class PlayerStatistics
 	public int Cash { get; set; }
 
 	/// <summary>
-	/// 玩家所玩的最长时间
-	/// </summary>
-	public float LongestPlayTime { get; set; }
-
-	/// <summary>
-	/// 机枪的射击次数
-	/// </summary>
-	public int MGShootTimes { get; set; }
-
-	/// <summary>
 	/// 基础敌人的击杀数
 	/// </summary>
 	public int BasicEnemyKilled { get; set; }
@@ -34,16 +25,6 @@ public sealed class PlayerStatistics
 	/// 上次玩家赚到的金钱
 	/// </summary>
 	public int LastCash { get; set; }
-
-	/// <summary>
-	/// 上次玩家所玩的时间
-	/// </summary>
-	public float LastPlayTime { get; set; }
-
-	/// <summary>
-	/// 上次机枪的射击次数
-	/// </summary>
-	public int LastMGShootTimes { get; set; }
 
 	/// <summary>
 	/// 上次基础敌人的击杀数
@@ -100,22 +81,32 @@ public sealed class PlayerStatistics
 		saveFile.Close();
 	}
 
-	/// <summary>
-	/// 从硬盘中读取玩家数据
-	/// </summary>
-	public static void LoadState()
-	{
-		BinaryFormatter formatter = new BinaryFormatter();
-		FileStream saveFile;
+    /// <summary>
+    /// 从硬盘中读取玩家数据
+    /// </summary>
+    public static void LoadState()
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        FileStream saveFile;
 
-		try {
-			saveFile = File.Open(Application.persistentDataPath + "/save.bin", FileMode.Open);
-		} catch(FileNotFoundException) {
-			return;
-		}
+        try
+        {
+            saveFile = File.Open(Application.persistentDataPath + "/save.bin", FileMode.Open);
+        }
+        catch (FileNotFoundException)
+        {
+            return;
+        }
 
-		instance = (PlayerStatistics)formatter.Deserialize(saveFile);
+        try
+        {
+            instance = (PlayerStatistics)formatter.Deserialize(saveFile);
+        }
+        catch (SerializationException)
+        {
+            Debug.LogWarning("读取到旧版本存档，旧版本存档将会被覆盖");
+        }
 
-		saveFile.Close();
-	}
+        saveFile.Close();
+    }
 }

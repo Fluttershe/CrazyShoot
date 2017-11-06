@@ -5,15 +5,19 @@ using UnityEngine.UI;
 
 public class ScoreText : MonoBehaviour {
 
-    private Text score;
+    [SerializeField]
+    private Text text;
+
+    PlayerStatistics state;
 
     private void Start()
     {
-        score = this.GetComponent<Text>();
+        state = PlayerStatistics.GetStat();
     }
 
-    private void Update ()
+    private void Update()
     {
-        score.text = "Your score:"+(int)GameTime.PassedTime;
-	}
+        text.text =
+       "你摧毁了 " + state.LastBasicEnemyKilled + " 辆敌车\n";
+    }
 }

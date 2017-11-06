@@ -98,15 +98,12 @@
     <Compile Include="Assets\Script\Global\GameTime.cs" />
     <Compile Include="Assets\Script\Global\PlayerStatistics.cs" />
     <Compile Include="Assets\Script\Global\SingleBehaviour.cs" />
-    <Compile Include="Assets\Script\LoadScene.cs" />
-    <Compile Include="Assets\Script\MenuScene.cs" />
     <Compile Include="Assets\Script\ObjectSpawns\AutoRelease.cs" />
     <Compile Include="Assets\Script\ObjectSpawns\EnemySpawn.cs" />
     <Compile Include="Assets\Script\ObjectSpawns\Objectpool.cs" />
     <Compile Include="Assets\Script\ObjectSpawns\ParticleEffect.cs" />
     <Compile Include="Assets\Script\ObjectSpawns\SpawnableObject.cs" />
     <Compile Include="Assets\Script\ObjectSpawns\SpawnPoint.cs" />
-    <Compile Include="Assets\Script\RepeatScene.cs" />
     <Compile Include="Assets\Script\ScoreText.cs" />
     <Compile Include="Assets\Script\SwitchScene.cs" />
     <Compile Include="Assets\Script\UI\CameraEffect.cs" />

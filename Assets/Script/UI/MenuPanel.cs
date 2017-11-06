@@ -21,11 +21,9 @@ public class MenuPanel : MonoBehaviour {
 	public void ShowState()
 	{
 		PlayerStatistics state = PlayerStatistics.GetStat();
-		text.text =
-			"到目前为止:\n" +
-			"你最久坚持了 " + state.LongestPlayTime + " 秒\n" +
-			"你总共赚了 " + state.Cash + " 元\n" +
-			"你摧毁了" + state.BasicEnemyKilled + " 名敌人\n" +
-			"你总共射击了" + state.MGShootTimes + " 次\n";
+        text.text =
+            "到目前为止:\n" +
+            "你总共赚了 " + state.Cash + " 元\n" +
+            "你摧毁了" + state.BasicEnemyKilled + " 名敌人\n" ;
 	}
 }
