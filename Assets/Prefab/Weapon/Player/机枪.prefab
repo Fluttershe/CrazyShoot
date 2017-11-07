@@ -80,9 +80,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ddd8ca5f40ed09546a1583cec61a92e4, type: 3}
+  m_audioClip: {fileID: 8300000, guid: aeae7d684a01e8340941e339fe6ef2a0, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.4
+  m_Volume: 0.2
   m_Pitch: 1.5
   Loop: 0
   Mute: 0
@@ -159,12 +159,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1279962996437382}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eeaf253573888fa4085b37c43ad4ec7c, type: 3}
+  m_Script: {fileID: 11500000, guid: c06cef66cd5d7034aa27176e40479995, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   objPrefab: {fileID: 114128869989622230, guid: 302a58a7604eb5a4f83c929327f88494,
     type: 2}
-  cooldownLimit: {x: 0.05, y: 0.1}
+  cooldownLimit: {x: 0, y: 0.05}
   maxSpawnAmount: -1
   spawnedAmount: 0
   firingEffect: {fileID: 1702362692395516, guid: d8e18e297834b5d42a6e187f1509fcd8,
@@ -173,27 +173,14 @@ MonoBehaviour:
   firingPoint: {fileID: 4200838512101092}
   ammoFaction: PlayerAmmo
   damage: 50
-  SanRe: {fileID: 0}
+  ammo:
+    baseValue: 0
+    currentValue: 0
   fireDispersion: 4
-  heatPerShoot: 5
-  heatDispSpeed: 75
-  heat:
-    baseValue: 300
-    currentValue: 0
-  reloadTime:
-    baseValue: 1
-    currentValue: 1
-  magazine:
-    baseValue: -1
-    currentValue: 0
   delayBeforeFire:
     baseValue: 0.2
     currentValue: 1
-  delayBeforeHeatDisp:
-    baseValue: 0.5
-    currentValue: 0
   triggerHeld: 0
-  overheated: 0
 --- !u!212 &212809612774104808
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -12,13 +12,14 @@ public abstract class SpawnableObject : MonoBehaviour {
 
 	public virtual void Initialize()
 	{
-		Destroyed = null;
+		// Destroyed = null;
 	}
 
 	public virtual void ReleaseSelf() {
 		// 调用摧毁事件
 		if (Destroyed != null)
 			Destroyed.Invoke();
+		Destroyed = null;
 		ObjectPool.Release(this);
 	}
 }

@@ -83,7 +83,7 @@ public class SpawnPoint : MonoBehaviour {
 	protected virtual void SpawnOver() {
 		// 重置冷却
 		cooldown = cooldownLimit.RandomFloat();
-		spawnedAmount++;
+		spawnedAmount ++;
 	}
 
 	/// <summary>

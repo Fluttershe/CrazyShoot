@@ -21,7 +21,7 @@ public sealed class GameoverPanel : MonoBehaviour
 	public void ShowState()
 	{
 		PlayerStatistics state = PlayerStatistics.GetStat();
-        text.text =
-            "你摧毁了 " + state.LastBasicEnemyKilled + " 辆敌车\n";
+		text.text =
+			"你摧毁了 " + state.LastBasicEnemyKilled + " 辆敌车\n";
 	}
 }

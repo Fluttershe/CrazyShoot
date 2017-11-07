@@ -7,27 +7,17 @@ using UnityEngine.UI;
 
 public class PlayerWeaponMount : MonoBehaviour
 {
-    [SerializeField]
-	private Slider heatBar;
-
 	[SerializeField]
 	private int currentWeapon;
 
-	[SerializeField]
-	FlashColor flash;
-
-	private IWeaponWithHeat[] weaponList;
+	private IPlayerWeapon[] weaponList;
 
 	private void Start()
 	{
-		weaponList = GetComponentsInChildren<IWeaponWithHeat>();
+		weaponList = GetComponentsInChildren<IPlayerWeapon>();
 		// 如果没有装载武器，停止该MonoBehaviour
 		if (weaponList == null || weaponList.Length == 0)
 			enabled = false;
-
-		// 挂载过热和散热事件
-		weaponList[currentWeapon].OnOverheating += OnOverheating;
-		weaponList[currentWeapon].OnOverheatEnded += OnOverheatEnded;
 	}
 
 	private void Update()
@@ -63,9 +53,6 @@ public class PlayerWeaponMount : MonoBehaviour
 		{
 			SwitchWeapon(currentWeapon - 1);
 		}
-
-		if (heatBar != null)
-			heatBar.value = weaponList[currentWeapon].HeatPercent;
 	}
 
 	protected virtual void Aiming()
@@ -84,18 +71,6 @@ public class PlayerWeaponMount : MonoBehaviour
 		transform.up = -direction;
 	}
 
-	// 当武器过热时
-	protected virtual void OnOverheating()
-	{
-		flash.StartFlash();
-	}
-
-	// 当武器过热完时
-	protected virtual void OnOverheatEnded()
-	{
-		flash.StopFlash();
-	}
-
 	/// <summary>
 	/// 切换武器
 	/// </summary>
@@ -108,25 +83,6 @@ public class PlayerWeaponMount : MonoBehaviour
 
 		// 如果武器序号和当前武器一样则不作任何处理并退出
 		if (currentWeapon == index) return;
-
-		// 移除上一个武器挂载的过热/散热事件
-		weaponList[currentWeapon].OnOverheating -= OnOverheating;
-		weaponList[currentWeapon].OnOverheatEnded -= OnOverheatEnded;
-
-		// 挂载过热/散热事件到现在的武器上
-		weaponList[index].OnOverheating += OnOverheating;
-		weaponList[index].OnOverheatEnded += OnOverheatEnded;
-
-		// 判断上一个武器的过热情况与切换到的武器的过热情况
-		// 如果两武器状态不同，则根据切换到的武器状态开始/停止过热提示
-		var overheatState = weaponList[currentWeapon].IsOverheated;
-		if (overheatState != weaponList[index].IsOverheated)
-		{
-			if (weaponList[index].IsOverheated)
-				flash.StartFlash();
-			else
-				flash.StopFlash();
-		}
 
 		currentWeapon = index;
 	}

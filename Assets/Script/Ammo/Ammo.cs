@@ -6,7 +6,7 @@ using UnityEngine;
 /// <summary>
 /// 子弹的基类
 /// </summary>
-public abstract class Ammo : SpawnableObject {
+public abstract class Ammo : SpawnableObject, IAmmo {
 
 	/// <summary>
 	/// 子弹击中的效果
@@ -25,7 +25,6 @@ public abstract class Ammo : SpawnableObject {
 	/// </summary>
 	[SerializeField]
 	protected StateValue existentTime;
-
 	public StateValue ExistentTime
 	{
 		get { return ExistentTime; }
@@ -35,7 +34,6 @@ public abstract class Ammo : SpawnableObject {
 	/// <summary>
 	/// 子弹的伤害
 	/// </summary>
-	[SerializeField]
 	protected float damage;
 	public float Damage
 	{
@@ -79,5 +77,10 @@ public abstract class Ammo : SpawnableObject {
 
         // 回收该子弹
         ReleaseSelf();
+	}
+
+	public void SetCollisionLayer(int layer)
+	{
+		gameObject.layer = layer;
 	}
 }

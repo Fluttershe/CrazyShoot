@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class BasicEnemy : Enemy {
+public class BasicEnemy : Enemy
+{
 
 	[SerializeField]
 	protected Vector3 frontRotation;
-	
+
 	[SerializeField]
 	protected Vector3 backRotation;
 
@@ -66,7 +67,7 @@ public class BasicEnemy : Enemy {
 	public override void ReleaseSelf()
 	{
 		PlayerStatistics.GetStat().LastBasicEnemyKilled ++;
-		PlayerStatistics.GetStat().LastCash +=5;
+		PlayerStatistics.GetStat().LastCash += 5;
 		base.ReleaseSelf();
 		gun.StopFire();
 	}

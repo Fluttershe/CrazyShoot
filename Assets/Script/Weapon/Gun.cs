@@ -48,9 +48,12 @@ public class Gun : SpawnPoint {
 	{
 		base.SpawnOver();
 
-		GameObject obj = ObjectPool.Acquire(firingEffect);
-		obj.transform.position = firingPoint.position;
-		obj.transform.rotation = firingPoint.rotation;
+		if (firingEffect != null)
+		{
+			var obj = ObjectPool.Acquire(firingEffect);
+			obj.transform.position = firingPoint.position;
+			obj.transform.rotation = firingPoint.rotation;
+		}
 
 		if (fireSound != null)
 			fireSound.Play(0);
@@ -61,14 +64,14 @@ public class Gun : SpawnPoint {
         base.InitializeObject(obj);
 		obj.transform.position = firingPoint.position;
 
-        Ammo ammo = (Ammo)obj;
+        var ammo = (IAmmo)obj;
 		if (ammo == null) return;
 
         // 设置子弹到对应的伤害
         ammo.Damage = damage;
 
 		// 设置子弹的阵营
-		ammo.gameObject.layer = ammoLayer;
+		ammo.SetCollisionLayer(ammoLayer);
     }
 
 	protected override void Update()

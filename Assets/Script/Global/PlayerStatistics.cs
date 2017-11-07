@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
-using System.Runtime.Serialization;
 
 /// <summary>
 /// 玩家数据
@@ -89,21 +89,15 @@ public sealed class PlayerStatistics
         BinaryFormatter formatter = new BinaryFormatter();
         FileStream saveFile;
 
-        try
-        {
+        try {
             saveFile = File.Open(Application.persistentDataPath + "/save.bin", FileMode.Open);
-        }
-        catch (FileNotFoundException)
-        {
+        } catch (FileNotFoundException) {
             return;
         }
 
-        try
-        {
+        try {
             instance = (PlayerStatistics)formatter.Deserialize(saveFile);
-        }
-        catch (SerializationException)
-        {
+        } catch (SerializationException) {
             Debug.LogWarning("读取到旧版本存档，旧版本存档将会被覆盖");
         }
 
